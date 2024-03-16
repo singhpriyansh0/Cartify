@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShoppingApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  </head>
+
+  <body>
+
+      <div class = "background">       
+      <div class="topnav" id="myTopnav">
+        <b> <%= image_tag "carts.png" ,size: "36x33"%> </b> 
+        <p><a class="active" href="/" >Home</a></p>
+        
+        <div class="dropdown">
+         <a class="dropbtn">Category</a>
+         <div class="dropdown-content">
+           <%Category.all.each do |e|%>
+                <a ><%=link_to e.name , home_path(e.id) %></a>
+                   
+             <%end%>
+         </div>
+
+        </div>
+
+
+        <a href="/order_items">My Orders</a>
+        <a href="#about">About</a>
+        
+          <%if current_user == nil %>
+            <%a = "user" %>
+          <%else%>
+            <%a = current_user[:first_name] %>
+          <%end%>
+        
+      <div class="log" style=" margin-left: auto;">
+        <a href="" class="dropbtn"  >hello <%=a%></a>
+      <div class="log-content" >
+        
+        <a><%= button_to(
+        "Log Out",
+        destroy_user_session_path,
+        method: :delete
+      ) %></a>
+        
+      </div>
+      </div>
+
+
+
+
+
+        <div class="cart">
+            <a class="cart-icon" href="/cart_items"><i class="fa fa-shopping-cart"><span class="ribbon"><%= CartItem.where(save_for_later: false).count%></span></i></a>
+        </div>
+      </div>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

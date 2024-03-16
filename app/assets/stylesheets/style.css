@@ -1,0 +1,154 @@
+
+  a, a:link, a:visited {
+    color: whitesmoke !important;
+    text-decoration: none;
+  }
+
+  .topnav a:hover {
+    color: black !important;
+    margin-bottom: 0px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+.topnav {
+                background-color: #1f8fff;
+                overflow: hidden;
+                display: flex;
+                color: white;
+                text-decoration: none;
+}
+
+
+.topnav a {     
+                margin-top: 10px;
+                float: left;
+                display: block;
+                color: black;
+                text-align: center;
+                padding: 5px 15px;
+                text-decoration: none;
+                font-size: 20px;
+
+
+}
+.topnav b {     
+                margin-top: 10px;
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 5px 15px;
+                text-decoration: none;
+                font-size: 20px;
+              }
+.topnav i {     margin-right: 25px;
+                margin-top: 4px;
+                font-size: 25px;             
+}
+
+.topnav a:hover {
+                background-color: white;
+                color: black;
+                border-radius: 15px;
+
+                }
+
+.ribbon {
+                width: 22px;
+                font-size: 12px;
+                padding: 3px;
+                position: absolute;
+                right: 25px;
+                top: 6px;
+                text-align: center;
+                border-radius: 25px;
+                transform: rotate(20deg);
+                background-color: #ff9800;
+                color: white;
+        }
+
+.dropbtn {    
+
+                font-size: 10px;
+                border: none;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+                margin-top: 45px;
+
+                display: none;
+                position: absolute;
+
+                background-color: #1f8fff;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                border-radius: 15px;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+                color: white;
+                padding: 8px 10px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: white;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #white;}
+
+/*.drop-content{
+                margin-top: 45px;
+
+                display: none;
+                position: absolute;
+
+                background-color: blue;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                border-radius: 15px;
+
+}
+.drop-content a:hover {background-color: white;}
+
+/* Show the dropdown menu on hover */
+/*.drop:hover .drop-content {display: block;}*/
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+/*.drop:hover .dropbtn {background-color: #white;}*/
+
+.log-content{
+
+                margin-top: 45px;
+
+                display: none;
+                position: absolute;
+
+                background-color: white;
+                min-width: 90px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                border-radius: 15px;
+
+}
+.log:hover .log-content {display: block;}
+.cart-icon{
+    background-color: #1f8fff !important;
+}
+

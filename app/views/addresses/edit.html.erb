@@ -1,0 +1,35 @@
+<%=form_for [current_user,@address] do |form|%>
+<h1>Edit address</h1>
+   <ul>
+        <li>    
+                <%= form.label :address_line_1 %><br>
+                <%= form.text_field :address_line_1 %>
+        </li>
+        <li>    
+                <%= form.label :address_line_2 %><br>
+                <%= form.text_field :address_line_2 %>
+        </li>
+        <li>    
+                <%= form.label :house_number %><br>
+                <%= form.text_field :house_room_number %>
+        </li>
+        <li>    
+                <%= form.label :landmark %><br>
+                <%= form.text_field :landmark %>
+        </li>
+        <li>    
+                <%= form.label :pin_code %><br>
+                <%= form.text_field :pin_code %>
+        </li>
+
+        <li>    
+                <%= form.label :city %><br>
+                <%= form.select :city_id ,@cities%>
+        </li>
+
+   </ul>
+
+    <%= form.submit "submit"%>
+    <%= form.submit "set Default Address" , name: "def_address"%>
+
+    <%end%>

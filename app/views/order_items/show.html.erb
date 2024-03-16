@@ -1,0 +1,65 @@
+<div class="main">
+	<h1>Order items</h1>
+
+	<table class="content">
+		<tr>
+			<th><h3>Name</h3></th>
+			<th><h3>Variant</h3></th>
+			<th><h3>Quantity</h3></th>
+			<th><h3>Price</h3></th>
+		</tr>
+
+		<%total_amount=0%>
+		<% @orders.each do |e|%>
+			
+			<% product=e.variant.product%>
+			<% variant= e.variant%>
+			<tr>
+				<td><%= product.name%></td>
+				<td>colour: <%= variant.colour%><br>material: <%= variant.material%> <br>weight: <%=variant.weight%></td>
+				<td><%=e.quantity%></td>
+				<td><%=variant.price%></td>
+			
+			</tr>
+			<%total_amount=total_amount + (e.quantity * variant.price)%>
+		<%end%>
+	</table>
+
+	<h2 align="end">&nbsp&nbsp&nbsp&nbsp&nbspOrder amount: <%=total_amount%></h2>
+
+
+	<% address = Order.find(@orders.first.order_id).address %>
+	<h2>Delivery Address</h2>
+	<h3>Address line 1 :<%=  address.address_line_1%></h3>   
+	<h3>Address line 2 :<%=  address.address_line_2%></h3>
+	<h3>House/room number: <%=  address.house_room_number%>&nbsp&nbsp Landmark: <%=address.landmark%> </h3>
+	<h3>Pin Code: <%=address.pin_code%></h3>
+</div > 
+<div class="print">
+	<a href="#" onclick="window.print();return false;"  class="print-btn">print me</a>
+</div>
+
+<style type="text/css">
+	.main{
+		
+		margin: 100px 20px 20px 20px;
+		
+		font-size: 16px;
+		border-radius: 50px;
+		padding: 20px  100px 100px 100px;
+	}
+
+	.content{
+	
+		border-radius: 50px	;
+		padding: 50px;
+	}
+	.print{
+		background-color: blue;
+	}
+	@media print {
+    background, footer, aside, form, … {
+        display: none;
+    }
+}
+</style>

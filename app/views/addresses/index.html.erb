@@ -1,0 +1,28 @@
+
+<div class="b">
+
+<%=link_to "Add address" , new_user_address_path(current_user.id) %>
+<% @addresses.each do |e|%>
+<br><%=link_to e.address_line_1 , user_address_path(current_user,e.id)%>
+<%end%>
+
+<h3><%=link_to "show products", products_path%></h3>
+<%= button_to(
+        "Log Out",
+        destroy_user_session_path,
+        method: :delete
+      ) %>
+
+
+<h3><%= link_to "My_orders", order_items_path %></h3>
+</div>
+
+<style type="text/css">
+        
+.b{
+        margin-top: 100px;
+        border: 5px red solid;
+        background: black;
+        color: white;
+}
+</style>

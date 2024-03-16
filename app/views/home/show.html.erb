@@ -1,0 +1,76 @@
+<div class="main">
+<h1><%=@category.name%></h1>
+<div class="product">
+	<div class="grid">
+		<%@products.each do |product|%>
+
+			<a href="/products/<%=product.id%>">
+				<div class="card">
+				  <div class="container">
+				    <h3><b><%=product.name%></b></h3>
+				    <h5><b><%=product.brand_name%></b></h5>
+				    
+				    <%=image_tag  display(product) , size: "250x250" ,:style => "object-fit: contain"%>
+				    <p><b>for Rs.<%= product.variants.first.price %></b></p>
+				  </div>
+				</div>
+			</a>
+		<%end%>
+	</div>
+</div>
+
+</div>
+
+<style type="text/css">
+	.main{
+		margin-top: 100px;
+
+	}
+
+	.main h1{
+		margin-left: 25px;
+	}
+
+
+.background {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+}
+.heading {          margin-top: 100px; 
+	margin-left: 25px;
+                
+
+                
+}
+.grid {
+                    display: inline-flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-direction: row;
+}
+.card {
+               /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                margin: 30px;
+                transition: 0.3s;
+}
+
+                /* On mouse-over, add a deeper shadow */
+.card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+ 
+.container p{      color: red;
+                    font-size: 14px;
+
+}
+               /* Add some padding inside the card container */
+.container {
+                padding: 2px 16px;
+}
+
+
+</style>

@@ -1,0 +1,62 @@
+<h1> Your cart</h1>
+<%cartvalue=0%>
+<%@cart_items.each do |cartitem|%>
+<table>
+<% @variant =cartitem.variant%> 
+	<tr>
+	<%if cartitem.save_for_later == false%>               
+			                             &nbsp&nbsp&nbsp&nbsp
+			<%@product=@variant.product%>   		
+			<td><%=@product.name%></td>         				
+			<td><%=@variant.price%></td>					
+			<td><%=cartitem.quantity%></td>
+			<%cartvalue= cartvalue+(@variant.price*cartitem.quantity)%>
+									
+		
+		<%=form_with  model:cartitem , method: :patch do |form|%>
+		<td><%=form.submit "-", name: "decrease"%>
+		<%=form.number_field :quantity ,disabled: true , :value => cartitem.quantity%>
+		<%=form.submit "+", name: "increase"%>
+			<%=form.submit "Save for later", name: "save_for_later"%>
+		</td>
+		<%end%>
+		
+		
+	<%else%>
+	<%end%>
+	</tr>
+</table>
+
+<%end%>
+<h3 align="center">Your cart vale: <%= cartvalue%></h3>
+
+
+<h1>Save for later</h1>
+
+<table>
+<%@cart_items.each do |cart_item|%>
+<%if cart_item.save_for_later == true%>
+
+<tr>
+<% @variant =cart_item.variant%> 
+<%@product=@variant.product%>   		
+			<td><%=@product.name%></td>         				
+			<td><%=@variant.price%></td>					
+			
+
+
+		<%=form_with  model:cart_item , method: :patch do |form|%>
+		<td>
+		    <%=form.submit "Remove form list ", name: "remove_from_list"%>
+			<%=form.submit "Move to cart", name: "move_to_cart"%>
+		</td>
+		<%end%>
+			
+			
+<%else %>	
+<%end%>
+<%end%>
+</tr>
+</table>
+
+<button><%=link_to "Proceed to check out" ,  select_address_addresses_path%></button>

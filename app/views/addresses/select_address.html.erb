@@ -1,0 +1,118 @@
+<div class="main">
+    <div class="current_address">
+		<h1>Delivery Address</h1>
+		<div class="text">
+			<h3 class="heading">Address1: <%=address_1(@address)%> &nbsp&nbsp Address2: <%=address_2(@address)%></h3>
+			<h3>House/Room No. : <%=house_no(@address)%> &nbsp&nbsp Landmark: <%=landmark(@address)%> &nbsp&nbsp Pin code: <%=pin(@address)%> </h3>
+		</div>
+		<%=form_with model:@address, method: :patch do |form|%>
+		<%=form.submit "Proceed for payment", name: "proceed" , :style =>" padding-top:95px; padding-bottom:95px; padding-left:70px; padding-right:70px; border-radius:130px; display:flex; margin-top:-188px; margin-left:849px; z-index:2; font-size:25px;color: white; font-weight:500; "%>
+		<%end%>
+	</div>
+	<div class="select_address">
+		<h1>Change address</h1>
+		<div class="select_address_text">
+			<h2 class="head">Available addresses:</h2>
+			<%@select_address.each do |e|%>
+			<div class="entity">
+
+				<h3>Address1: <%=address_1(e)%> &nbsp&nbsp Address2: <%=address_2(e)%></h3>
+				<h3>House/Room No. : <%=house_no(e)%> &nbsp&nbsp Landmark: <%=landmark(e)%> &nbsp&nbsp Pin code: <%=pin(e)%> </h3>
+				<%=form_with model: e ,method: :patch do |form| %>
+					<%=form.submit "select for delivery",  name: "select_for_delivery" ,:style =>"background:#2f97ffe3; padding:12px; border:0px; color:black; font-weight:500; font-size:16px; box-shadow: 0px 0px 30px 1px #1f8fff; margin-top:10px;"%>
+
+					<%=form.submit "edit address", name: "edit_address" ,:style =>"background:#2f97ffe3; padding:12px; margin-left:50px; border:0px; color:black; font-weight:200; font-size:16px; box-shadow: 0px 0px 30px 1px #1f8fff; margin-top:10px;"%>
+
+					<%=form.submit "remove address", name: "remove_address" ,:style =>"background:#2f97ffe3; padding:12px; margin-left:50px; border:0px; color:black; font-weight:200; font-size:16px; box-shadow: 0px 0px 30px 1px #1f8fff; margin-top:10px;"%>
+				<%end%>
+			</div>
+			<%end%>
+		</div>
+	</div>
+
+	<div class="add_button">
+		<a href="/addresses/new"><button class="button">Add new address +</button></a>
+	</div>
+</div>
+
+
+<style type="text/css">
+	.current_address{
+		
+		background: #2f97ffe3;
+		border: 5px #2f97ffe3 solid;
+	    padding-left: 120px;
+	    border-radius: 150px;
+	    margin-right: 261px;
+	    padding-bottom: 0px;
+	    padding-top: 15px;
+	    margin-top: 120px;
+	    box-shadow: 0px 0px 40px 1px #437fd9;
+
+		}
+
+	.current_address h3 {
+		color: white;
+		font-size: 18px;
+	}
+	.current_address h1{
+		color: #4e5778fc;
+	}
+	.main {
+	
+		margin-left: 230px;
+	}
+	.select_address{
+		margin-top: 60px;
+		border: 5px #2f97ff8a solid;
+		padding-left: 100px;
+		padding-top: 25px;
+		padding-bottom: 20px;
+		border-radius: 100px;
+		margin-right: 800px;
+		background: white;
+/*		box-shadow: 0px 0px 30px 1px #1f8fff;*/
+	}
+
+	.select_address_text{
+		padding-top: 15px;
+	}
+	.heading{
+		padding-top: 15px;
+	}
+	.text{
+		padding-left: 50px;
+		padding-bottom: 10px;
+	}
+	.entity{
+		padding-bottom: 35px;
+		padding-left: 50px;
+	}
+	.head{
+		padding-left: 20px;
+		padding-bottom: 20px;
+	}
+	.add_button{
+		display: flex;	
+	    margin-right: 15vw;
+	    display: flex;
+	    flex-direction: row-reverse;
+	    margin-top: -50vh;
+	}
+	.button{
+		
+		background: #fb641b;
+	    padding-left: 100px;
+	    padding-right: 100px;
+	    padding-bottom: 50px;
+	    padding-top: 50px;
+	    font-size: 28px;
+	    font-weight: 400;
+	    box-shadow: 0px 0px 40px 1px #fb641b;
+	    border: 0px;
+	}
+	.button:hover{
+		background: #fb641b;
+	}
+
+</style>

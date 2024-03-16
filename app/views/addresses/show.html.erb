@@ -1,0 +1,17 @@
+<div class="main"> 
+<%= @address.address_line_1%><br>
+
+<%= @address.address_line_2%><br>
+<%= @address.house_room_number%><br>
+
+<%= @address.address_line_1%><br>
+<%=link_to "edit address", edit_user_address_path(current_user,@address) %>
+</div>
+
+<style type="text/css">
+	.main{
+		background: black;
+		margin-top: 100px;
+		color: white;
+	}
+</style>

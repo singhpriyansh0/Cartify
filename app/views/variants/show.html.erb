@@ -1,0 +1,102 @@
+
+<div class="product_details">
+	
+	<div class="variant_image">
+		<%=image_tag  Rails.application.routes.url_helpers.rails_blob_url(@variant.images.first, only_path: true) , size: "580x450" ,:style => "object-fit: contain"%>		
+		<div>
+			<%=form_with model: @cart_item , method: :post do |form|%>
+			
+			<%=form.hidden_field :variant_id , value: @variant.id%>
+			<%=form.hidden_field :quantity , value: 1%>
+			<%=form.submit "Add to cart" , :style => "margin-left: 160px; margin-top: 70px; padding:20px; font-size: 25px; padding-left: 75px; padding-right: 75px; "%>			
+			<%end%>
+     	</div>
+	</div>
+
+	<div  class="variant_details">
+		
+		<h1><%= @variant.product.name%></h1>
+		<h3 class="sep_price">Special price </h3>
+		<h1 class="price">for Rs.<%= @variant.price %></h1>
+		<h2>Brand: <%= @variant.product.brand_name%></h2>
+		<h2>Product details: </h2>
+		<div class="details">
+			<h3 class="detail"> Colour: <%= @variant.colour%></h3>
+			<h3 class="detail"> Weight: <%= @variant.weight%></h3>
+			<h3 class="detail"> Material: <%= @variant.colour%></h3>
+		</div>
+		<h2>Description:</h2>
+		<h3 class="desc"> <%= @variant.product.description%></h3>
+		<%if @variants.count >1%>	
+		<h2>Variant available:</h2>
+		<%end%>
+        
+	</div>
+</div>
+
+
+
+<div class="images">
+	<%@variants.each do |variant|%>
+		<a href="/variants/<%=variant.id%>" method="get">
+			<div class="image">
+				<%=image_tag  Rails.application.routes.url_helpers.rails_blob_url(variant.images.first, only_path: true) , size: "190x190" ,:style => "object-fit: contain "%>
+			</div>
+		</a>
+	<%end%>
+	
+</div>
+
+<style type="text/css">
+	.variant_image {
+		margin-top: 150px;
+
+	}
+
+	.product_details {
+		display: flex;
+	}
+
+	.variant_details {
+		margin-left: 200px;
+		margin-top: 125px;
+	}
+	.price {
+		color: red;
+	}
+	.detail {
+		margin-left: 190px;
+	}
+	.details{
+		margin-top: -40px;
+	}
+	.sep_price {
+		color: green;
+	}
+	.Add_to_cart_btn{
+		background-color: yellow ;
+		padding: 15px;
+		font-size: 20px;
+		padding-left: 100px;
+		padding-right: 100px;
+		margin-left: 190px;
+		margin-top: 150px;
+	}
+	.images{ 
+		
+		display: flex;
+		justify-content: flex-end;	
+
+			
+	}
+	.image{
+		padding: 10px;
+		margin-right: 6vw;
+		border: 2px lightgray solid;
+		border-radius: 9px;
+	}
+	.image h5 {
+
+	}
+
+</style>

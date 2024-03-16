@@ -1,0 +1,171 @@
+<div class="temp">
+	<div class="overall" >
+		<div class="main">
+			<h1> Your cart</h1>
+			<%cartvalue=0%>
+			<%if save_for_later_f(@cart_items)%>
+				<%@cart_items.each do |cartitem|%>
+
+					<% variant =cartitem.variant%> 
+
+					<%if check_for_f(cartitem)%>               
+					                         &nbsp&nbsp&nbsp&nbsp
+						<%product=variant.product%> 
+						<div class="product_cart">
+								<div class="image">
+									<%=image_tag  display_image(variant), size: "210x210" ,:style => "object-fit: contain "%>
+								</div>
+
+							<div class="product_details">			
+								<h2><%=product.name%> <%=product.brand_name %></h2>        				
+								<h3 class="item_price">Rs.<%=price(variant)%></h3>	
+								<h4>Colour: <%= colour(variant)%> &nbsp&nbsp&nbsp&nbsp Material: <%= material(variant)%>&nbsp&nbsp&nbsp&nbsp weight: <%= weight(variant)%></h4>
+												
+								<%cartvalue= value(cartvalue,variant,cartitem)%>
+													
+
+									<%=form_with  model:cartitem , method: :patch do |form|%>						<%=form.submit "-", name: "decrease", :disabled => check(cartitem)%>
+										<%=form.number_field :quantity ,disabled: true ,:value => quantity(cartitem) , :style => "font-size: 15px; width: 18%; padding-left:20px; "%>
+										<%=form.submit "+", name: "increase"%>
+										<h4><%=form.submit "Save for later", name: "save_for_later"%></h4>
+									<%end%>
+
+							</div>	
+
+
+
+						</div>	
+					<%end%>
+				<%end%>
+
+			<%else%>
+				<h2 align="center">Your cart is empty ! :(</h2>
+			<%end%>	
+			<div class="save_later">
+			<%if save_for_later_t(@cart_items)%>
+			<h1>Save for later</h1>
+			<%end%>
+
+
+			<%@cart_items.each do |cart_item|%>
+			<%if check_for_t(cart_item)%>
+
+
+
+
+			<% variant =cart_item.variant%> 
+			<%product=product(variant)%>  
+
+			<div class="save_later_main">
+			<div class="image">
+							<%=image_tag  display_image(variant), size: "210x210" ,:style => "object-fit: contain "%>
+						</div>
+						<div class="save_for_later_details">
+
+						<h2><%=product.name%></h2>         				
+						<h3>RS. <%=variant.price%></h3>					
+						<h4>Colour: <%= colour(variant)%> &nbsp&nbsp&nbsp&nbsp Material: <%= material(variant)%>&nbsp&nbsp&nbsp&nbsp weight: <%= weight(variant)%></h4>
+											
+
+
+					<%=form_with  model:cart_item , method: :patch do |form|%>
+					
+					    <h4><%=form.submit "Remove form list ", name: "remove_from_list"%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<%=form.submit "Move to cart", name: "move_to_cart"%></h4>
+					
+					
+					<%end%>
+					</div>	
+				</div>		
+
+			<%end%>
+			<%end%>
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+		<div class="user_cart_value">
+			<div class="proceed">
+				<h1>Your cart value</h1>
+				<h2>Number of items : <%= @cart_items.where(save_for_later: false).count%></h2>
+				<h2>Total amount:  <%= cartvalue%> </h2>
+			</div>
+		<h3><button class="proceed_btn"><%=link_to "Proceed to check out" ,  select_address_addresses_path%></button></h3>
+		</div>
+</div>
+
+
+<style type="text/css">
+	.overall{
+
+	}
+
+	.user_value{
+
+	}
+	.product_details{
+		margin-top: -3vh;
+		margin-left: 150px;
+	}
+	.item_price{
+		color: red;
+	}
+	.product_cart{
+		display: flex;
+		margin-bottom: 50px;
+
+	}
+	.main{
+		margin-top: 100px;
+		margin-left: 70px;
+	}
+	.user_cart_value
+	{
+	  margin-top: 100px;
+	}
+
+	.user_cart_value h2 {
+		margin-top: 30px;
+		margin-left: 20px;
+	}
+
+	.user_cart_value h1 {
+		
+		
+	}
+	.save_later{
+
+	}
+	.save_later_main{
+		display: flex;
+		margin-top: 50px;
+	}
+
+	.save_for_later_details{
+		margin-left: 150px;
+	}
+	.temp {
+		display: flex;
+    flex-direction: row;
+        justify-content: space-around;
+	}
+
+	.proceed{
+		
+		background-color: #ebf0f9;;
+		border-radius: 15px;
+		padding: 8px 45px 45px 45px;
+	}
+	.proceed_btn{
+		color: red;
+		padding: 20px;
+		margin-left: 70px;
+	}
+</style>
